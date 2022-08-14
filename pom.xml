@@ -8,7 +8,10 @@
     <artifactId>van4life</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>campsite</module>
+        <module>application</module>
+        <module>bootstrap</module>
+        <module>domain</module>
+        <module>framework</module>
     </modules>
     <packaging>pom</packaging>
 
@@ -105,6 +108,10 @@
                     <source>17</source>
                     <target>17</target>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
