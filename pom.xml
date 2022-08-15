@@ -8,10 +8,7 @@
     <artifactId>van4life</artifactId>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>application</module>
         <module>bootstrap</module>
-        <module>domain</module>
-        <module>framework</module>
         <module>core</module>
         <module>web</module>
         <module>infrastructure</module>
