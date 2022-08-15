@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>bootstrap</artifactId>
+    <artifactId>core</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -17,11 +17,4 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependencies>
-        <dependency>
-            <groupId>de.saschakiefer</groupId>
-            <artifactId>web</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
 </project>

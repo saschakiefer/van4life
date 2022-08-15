@@ -12,6 +12,10 @@
         <module>bootstrap</module>
         <module>domain</module>
         <module>framework</module>
+        <module>core</module>
+        <module>web</module>
+        <module>infrastructure</module>
+        <module>persistence</module>
     </modules>
     <packaging>pom</packaging>
 
