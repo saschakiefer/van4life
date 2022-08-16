@@ -31,7 +31,7 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 @Table(name = "campsite")
-public class Campsite extends BaseEntity{
+public class Campsite extends BaseEntity {
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -54,7 +54,7 @@ public class Campsite extends BaseEntity{
 	@OneToMany(mappedBy = "campsite", fetch = FetchType.EAGER)
 	private Set<Visit> visits = new TreeSet<>();
 
-	public void addToVisits(Visit visit){
+	public void addToVisits(Visit visit) {
 		visit.setCampsite(this);
 		this.visits.add(visit);
 	}

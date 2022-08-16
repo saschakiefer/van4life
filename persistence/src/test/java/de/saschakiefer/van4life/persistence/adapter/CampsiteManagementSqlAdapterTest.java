@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 
 import de.saschakiefer.van4life.Application;
 import de.saschakiefer.van4life.application.adapter.CampsiteManagement;
@@ -28,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest(classes = Application.class)
 @Transactional
-//@ActiveProfiles("psql")
+@ActiveProfiles("psql")
 class CampsiteManagementSqlAdapterTest {
 	@Resource
 	CampsiteRepository campsiteRepository;
@@ -50,8 +51,8 @@ class CampsiteManagementSqlAdapterTest {
 				.creationDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.build();
 
-		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022,1,1)).build());
-		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022,2,1)).build());
+		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022, 1, 1)).build());
+		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022, 2, 1)).build());
 
 		campsiteRepository.save(campsiteDao);
 		visitRepository.saveAll(campsiteDao.getVisits());

@@ -1,0 +1,62 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd"
+        logicalFilePath="db/changelog.xml">
+
+    <property name="blob" value="bytea" dbms="h2"/>
+
+    <changeSet id="01 create campsite" author="saschakiefer">
+        <createTable tableName="campsite">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="zip" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="city" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="country" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="homepage" type="varchar">
+                <constraints nullable="true"/>
+            </column>
+            <column name="latitude" type="double">
+                <constraints nullable="true"/>
+            </column>
+            <column name="longitude" type="double">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="02 create visit" author="saschakiefer">
+        <createTable tableName="visit">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="date" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="campsite_id" type="uuid">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint constraintName="fk_visit_campsite_id"
+                                 baseTableName="visit" baseColumnNames="campsite_id"
+                                 referencedTableName="campsite" referencedColumnNames="id"
+                                 onDelete="RESTRICT" onUpdate="RESTRICT"/>
+    </changeSet>
+
+</databaseChangeLog>

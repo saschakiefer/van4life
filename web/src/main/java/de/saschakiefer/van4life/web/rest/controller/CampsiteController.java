@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.saschakiefer.van4life.domain.entity.Campsite;
+import de.saschakiefer.van4life.domain.entity.Visit;
 import de.saschakiefer.van4life.domain.vo.Address;
 import de.saschakiefer.van4life.domain.vo.Position;
-import de.saschakiefer.van4life.domain.entity.Visit;
 
 @RestController
 @RequestMapping("/api/v1/campsite")
 public class CampsiteController {
 
 	@GetMapping("/{id}")
-	public Campsite findById(@PathVariable String id){
+	public Campsite findById(@PathVariable String id) {
 		return Campsite.builder()
 				.id(UUID.randomUUID())
 				.name("HalloCamping")

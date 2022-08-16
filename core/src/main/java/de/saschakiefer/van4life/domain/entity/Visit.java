@@ -26,19 +26,17 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "visit")
-public class Visit implements Comparable<Visit>{
+public class Visit implements Comparable<Visit> {
+	@Column(name = "date")
+	LocalDate date;
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
 	@Column(name = "id", nullable = false)
 	private UUID id;
-
 	@ManyToOne
 	@JoinColumn(name = "campsite_id")
 	private Campsite campsite;
-
-	@Column(name = "date")
-	LocalDate date;
 
 	@Override
 	public int compareTo(Visit visit) {
