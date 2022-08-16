@@ -18,10 +18,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import de.saschakiefer.van4life.Application;
 import de.saschakiefer.van4life.application.adapter.CampsiteManagement;
 import de.saschakiefer.van4life.domain.entity.Campsite;
-import de.saschakiefer.van4life.persistence.dao.AddressDao;
-import de.saschakiefer.van4life.persistence.dao.CampsiteDao;
-import de.saschakiefer.van4life.persistence.dao.PositionDao;
-import de.saschakiefer.van4life.persistence.dao.VisitDao;
+import de.saschakiefer.van4life.domain.entity.Visit;
+import de.saschakiefer.van4life.domain.vo.Address;
+import de.saschakiefer.van4life.domain.vo.Position;
 import de.saschakiefer.van4life.persistence.repository.CampsiteRepository;
 import de.saschakiefer.van4life.persistence.repository.VisitRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -42,17 +41,17 @@ class CampsiteManagementSqlAdapterTest {
 
 	@Test
 	void readCampsite() {
-		CampsiteDao campsiteDao = CampsiteDao.builder()
+		Campsite campsiteDao = Campsite.builder()
 				.name("Test Campsite")
-				.address(new AddressDao("Doe Stree", "12345", "Doe City", "DE"))
+				.address(new Address("Doe Stree", "12345", "Doe City", "DE"))
 				.homepage("https://www.example.com")
-				.position(new PositionDao(1.234, 4.321))
+				.position(new Position(1.234, 4.321))
 				.updateDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.creationDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.build();
 
-		campsiteDao.addToVisits(VisitDao.builder().date(LocalDate.of(2022,1,1)).build());
-		campsiteDao.addToVisits(VisitDao.builder().date(LocalDate.of(2022,2,1)).build());
+		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022,1,1)).build());
+		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022,2,1)).build());
 
 		campsiteRepository.save(campsiteDao);
 		visitRepository.saveAll(campsiteDao.getVisits());
@@ -62,6 +61,5 @@ class CampsiteManagementSqlAdapterTest {
 		assertThat(campsite.isPresent(), is(true));
 
 		assertThat(campsite.get().getVisits().size(), is(2));
-
 	}
 }

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.saschakiefer.van4life.domain.entity.Campsite;
 import de.saschakiefer.van4life.domain.vo.Address;
 import de.saschakiefer.van4life.domain.vo.Position;
-import de.saschakiefer.van4life.domain.vo.Visit;
+import de.saschakiefer.van4life.domain.entity.Visit;
 
 @RestController
 @RequestMapping("/api/v1/campsite")
@@ -26,7 +26,7 @@ public class CampsiteController {
 				.name("HalloCamping")
 				.address(new Address("Entenhausener Weg 26", "12345", "Entenhausen", Locale.GERMANY.getCountry()))
 				.position(new Position(123.45, 543.21))
-				.visits(Set.of(new Visit(UUID.randomUUID(), LocalDate.now())))
+				.visits(Set.of(Visit.builder().id(UUID.randomUUID()).date(LocalDate.now()).build()))
 				.build();
 	}
 }

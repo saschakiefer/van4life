@@ -1,4 +1,4 @@
-package de.saschakiefer.van4life.persistence.dao;
+package de.saschakiefer.van4life.domain.entity;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -26,7 +26,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "visit")
-public class VisitDao implements Comparable<VisitDao>{
+public class Visit implements Comparable<Visit>{
 	@Id
 	@GeneratedValue(generator = "uuid2")
 	@GenericGenerator(name = "uuid2", strategy = "uuid2")
@@ -35,28 +35,13 @@ public class VisitDao implements Comparable<VisitDao>{
 
 	@ManyToOne
 	@JoinColumn(name = "campsite_id")
-	private CampsiteDao campsiteDao;
+	private Campsite campsite;
 
 	@Column(name = "date")
 	LocalDate date;
 
 	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-
-		VisitDao visitDao = (VisitDao) o;
-
-		return date.equals(visitDao.date);
-	}
-
-	@Override
-	public int hashCode() {
-		return date.hashCode();
-	}
-
-	@Override
-	public int compareTo(VisitDao o) {
-		return date.compareTo(o.date);
+	public int compareTo(Visit visit) {
+		return date.compareTo(visit.date);
 	}
 }
