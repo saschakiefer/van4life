@@ -50,6 +50,9 @@ public class Campsite extends BaseEntity {
 	@Column(name = "homepage")
 	private String homepage;
 
+	@Column(name = "comment")
+	private String comment;
+
 	@Builder.Default
 	@OneToMany(mappedBy = "campsite", fetch = FetchType.EAGER)
 	private Set<Visit> visits = new TreeSet<>();

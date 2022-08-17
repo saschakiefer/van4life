@@ -5,6 +5,6 @@ import java.util.UUID;
 
 import de.saschakiefer.van4life.domain.entity.Campsite;
 
-public interface CampsiteManagement {
+public interface CampsiteManagementAdapter {
 	Optional<Campsite> readCampsite(UUID id);
 }

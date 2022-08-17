@@ -9,7 +9,6 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 import javax.annotation.Resource;
-import javax.transaction.Transactional;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 
 import de.saschakiefer.van4life.Application;
-import de.saschakiefer.van4life.application.adapter.CampsiteManagement;
+import de.saschakiefer.van4life.application.adapter.CampsiteManagementAdapter;
 import de.saschakiefer.van4life.domain.entity.Campsite;
 import de.saschakiefer.van4life.domain.entity.Visit;
 import de.saschakiefer.van4life.domain.vo.Address;
@@ -28,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest(classes = Application.class)
-@Transactional
+//@Transactional
 @ActiveProfiles("psql")
 class CampsiteManagementSqlAdapterTest {
 	@Resource
@@ -38,29 +37,31 @@ class CampsiteManagementSqlAdapterTest {
 	VisitRepository visitRepository;
 
 	@Autowired
-	CampsiteManagement campsiteManagement;
+	CampsiteManagementAdapter campsiteManagement;
 
 	@Test
-	void readCampsite() {
-		Campsite campsiteDao = Campsite.builder()
+	void readCampsite_campsiteExists_returnsCampsite() {
+		Campsite campsiteDb = Campsite.builder()
 				.name("Test Campsite")
 				.address(new Address("Doe Stree", "12345", "Doe City", "DE"))
 				.homepage("https://www.example.com")
 				.position(new Position(1.234, 4.321))
 				.updateDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.creationDateTime(Timestamp.valueOf(LocalDateTime.now()))
+				.comment("TestComment")
 				.build();
 
-		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022, 1, 1)).build());
-		campsiteDao.addToVisits(Visit.builder().date(LocalDate.of(2022, 2, 1)).build());
+		campsiteDb.addToVisits(Visit.builder().date(LocalDate.of(2022, 1, 1)).build());
+		campsiteDb.addToVisits(Visit.builder().date(LocalDate.of(2022, 2, 1)).build());
 
-		campsiteRepository.save(campsiteDao);
-		visitRepository.saveAll(campsiteDao.getVisits());
-		log.info("Test campsite with if '{}' generated", campsiteDao.getId());
+		campsiteRepository.save(campsiteDb);
+		visitRepository.saveAll(campsiteDb.getVisits());
+		log.info("Test campsite with if '{}' generated", campsiteDb.getId());
 
-		Optional<Campsite> campsite = campsiteManagement.readCampsite(campsiteDao.getId());
+		Optional<Campsite> campsite = campsiteManagement.readCampsite(campsiteDb.getId());
 		assertThat(campsite.isPresent(), is(true));
 
 		assertThat(campsite.get().getVisits().size(), is(2));
+		assertThat(campsite.get().getComment(), is("TestComment"));
 	}
 }

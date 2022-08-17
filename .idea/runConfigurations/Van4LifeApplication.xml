@@ -1,0 +1,16 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Van4LifeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+    <option name="ACTIVE_PROFILES" />
+    <module name="bootstrap" />
+    <option name="SPRING_BOOT_MAIN_CLASS" value="de.saschakiefer.van4life.Van4LifeApplication" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="de.saschakiefer.van4life.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
