@@ -9,6 +9,7 @@ import java.util.UUID;
 import org.springframework.validation.annotation.Validated;
 
 import de.saschakiefer.van4life.domain.vo.Address;
+import de.saschakiefer.van4life.domain.vo.CampsiteType;
 import de.saschakiefer.van4life.domain.vo.Position;
 import lombok.Getter;
 import lombok.Setter;
@@ -24,6 +25,8 @@ public class CampsiteResponseDTO {
 	private String homepage;
 	private String comment;
 	private Set<LocalDate> visits = new TreeSet<>();
+	private CampsiteType type;
+	private int rating;
 	private Timestamp creationDateTime;
 	private Timestamp updateDateTime;
 }

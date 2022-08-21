@@ -14,6 +14,7 @@ import org.junit.jupiter.api.Test;
 import de.saschakiefer.van4life.domain.entity.Campsite;
 import de.saschakiefer.van4life.domain.entity.Visit;
 import de.saschakiefer.van4life.domain.vo.Address;
+import de.saschakiefer.van4life.domain.vo.CampsiteType;
 import de.saschakiefer.van4life.domain.vo.Position;
 import de.saschakiefer.van4life.web.rest.dto.CampsiteResponseDTO;
 
@@ -29,6 +30,7 @@ class CampsiteMapperTest {
 				.updateDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.creationDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.comment("TestComment")
+				.rating(3)
 				.build();
 
 		campsite.addToVisits(Visit.builder().date(LocalDate.of(2022, 1, 1)).build());
@@ -37,6 +39,9 @@ class CampsiteMapperTest {
 		CampsiteResponseDTO campsiteResponseDTO = CampsiteMapper.CampsiteToCampsiteResponseDto(campsite);
 		assertThat(campsiteResponseDTO, is(notNullValue()));
 		assertThat(campsiteResponseDTO.getVisits().size(), is(2));
+
+		assertThat(campsiteResponseDTO.getType(), is(CampsiteType.CS));
+		assertThat(campsiteResponseDTO.getRating(), is(3));
 	}
 
 }

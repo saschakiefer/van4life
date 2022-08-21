@@ -1,6 +1,7 @@
 package de.saschakiefer.van4life.persistence.adapter;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.sql.Timestamp;
@@ -20,6 +21,7 @@ import de.saschakiefer.van4life.application.adapter.CampsiteManagementAdapter;
 import de.saschakiefer.van4life.domain.entity.Campsite;
 import de.saschakiefer.van4life.domain.entity.Visit;
 import de.saschakiefer.van4life.domain.vo.Address;
+import de.saschakiefer.van4life.domain.vo.CampsiteType;
 import de.saschakiefer.van4life.domain.vo.Position;
 import de.saschakiefer.van4life.persistence.repository.CampsiteRepository;
 import de.saschakiefer.van4life.persistence.repository.VisitRepository;
@@ -49,6 +51,7 @@ class CampsiteManagementSqlAdapterTest {
 				.updateDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.creationDateTime(Timestamp.valueOf(LocalDateTime.now()))
 				.comment("TestComment")
+				.rating(3)
 				.build();
 
 		campsiteDb.addToVisits(Visit.builder().date(LocalDate.of(2022, 1, 1)).build());
@@ -63,5 +66,11 @@ class CampsiteManagementSqlAdapterTest {
 
 		assertThat(campsite.get().getVisits().size(), is(2));
 		assertThat(campsite.get().getComment(), is("TestComment"));
+
+		assertThat(campsite.get().getType(), is(CampsiteType.CS));
+		assertThat(campsite.get().getRating(), is(3));
+
+		assertThat(campsite.get().getCreationDateTime(), is(notNullValue()));
+		assertThat(campsite.get().getUpdateDateTime(), is(notNullValue()));
 	}
 }

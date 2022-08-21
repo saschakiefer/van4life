@@ -16,6 +16,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 import de.saschakiefer.van4life.domain.vo.Address;
+import de.saschakiefer.van4life.domain.vo.CampsiteType;
 import de.saschakiefer.van4life.domain.vo.Position;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -56,6 +57,13 @@ public class Campsite extends BaseEntity {
 	@Builder.Default
 	@OneToMany(mappedBy = "campsite", fetch = FetchType.EAGER)
 	private Set<Visit> visits = new TreeSet<>();
+
+	@Builder.Default
+	@Column(name = "type")
+	private CampsiteType type = CampsiteType.CS;
+
+	@Column(name = "rating")
+	private int rating;
 
 	public void addToVisits(Visit visit) {
 		visit.setCampsite(this);

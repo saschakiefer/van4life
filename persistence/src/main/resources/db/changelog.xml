@@ -37,6 +37,10 @@
             <column name="longitude" type="double">
                 <constraints nullable="true"/>
             </column>
+            <column name="creation_datetime"
+                    type="timestamp"/>
+            <column name="update_datetime"
+                    type="timestamp"/>
         </createTable>
     </changeSet>
 
@@ -63,6 +67,19 @@
         <addColumn tableName="campsite">
             <column name="comment" type="varchar">
                 <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="04 add rating and type on campsite" author="saschakiefer">
+        <addColumn tableName="campsite">
+            <column name="rating" type="int2">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+        <addColumn tableName="campsite">
+            <column name="type" type="int2" value="0">
+                <constraints nullable="false"/>
             </column>
         </addColumn>
     </changeSet>
