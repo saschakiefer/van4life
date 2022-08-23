@@ -25,7 +25,7 @@ public class CampsiteMapper {
 			}
 		};
 		mapper.addConverter(visitsConverter);
-
+		
 		CampsiteResponseDTO campsiteResponseDTO = mapper.map(campsite, CampsiteResponseDTO.class);
 		return campsiteResponseDTO;
 	}

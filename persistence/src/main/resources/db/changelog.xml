@@ -84,4 +84,12 @@
         </addColumn>
     </changeSet>
 
+    <changeSet id="05 add geospatial representation of coordinates to table campsite" author="saschakiefer">
+        <addColumn tableName="campsite">
+            <column name="coordinates" type="GEOMETRY(Point,4326)">
+                <constraints nullable="true"/>
+            </column>
+        </addColumn>
+    </changeSet>
+
 </databaseChangeLog>
