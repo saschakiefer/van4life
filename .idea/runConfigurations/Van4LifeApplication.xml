@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Van4LifeApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-    <option name="ACTIVE_PROFILES" />
+    <option name="ACTIVE_PROFILES" value="psql" />
     <module name="bootstrap" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="de.saschakiefer.van4life.Van4LifeApplication" />
     <extension name="coverage">

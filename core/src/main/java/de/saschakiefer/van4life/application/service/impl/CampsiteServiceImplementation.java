@@ -19,4 +19,9 @@ public class CampsiteServiceImplementation implements CampsiteService {
 	public Optional<Campsite> readCampsite(UUID id) {
 		return campsiteManagementAdapter.readCampsite(id);
 	}
+
+	@Override
+	public Campsite persistCampsite(Campsite campsite) {
+		return campsiteManagementAdapter.persistCampsite(campsite);
+	}
 }

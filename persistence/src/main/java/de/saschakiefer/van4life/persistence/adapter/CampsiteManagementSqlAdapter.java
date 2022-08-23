@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import de.saschakiefer.van4life.application.adapter.CampsiteManagementAdapter;
 import de.saschakiefer.van4life.domain.entity.Campsite;
 import de.saschakiefer.van4life.persistence.repository.CampsiteRepository;
+import de.saschakiefer.van4life.persistence.repository.VisitRepository;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -20,8 +21,19 @@ public class CampsiteManagementSqlAdapter implements CampsiteManagementAdapter {
 	@Autowired
 	CampsiteRepository campsiteRepository;
 
+	@Autowired
+	VisitRepository visitRepository;
+
 	@Override
 	public Optional<Campsite> readCampsite(UUID id) {
 		return campsiteRepository.findById(id);
+	}
+
+	@Override
+	public Campsite persistCampsite(Campsite campsite) {
+		Campsite dbCampsite = campsiteRepository.save(campsite);
+		visitRepository.saveAll(campsite.getVisits());
+
+		return dbCampsite;
 	}
 }
