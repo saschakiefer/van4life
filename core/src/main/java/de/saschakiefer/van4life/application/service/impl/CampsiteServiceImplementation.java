@@ -1,5 +1,6 @@
 package de.saschakiefer.van4life.application.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -16,12 +17,17 @@ public class CampsiteServiceImplementation implements CampsiteService {
 	CampsiteManagementAdapter campsiteManagementAdapter;
 
 	@Override
-	public Optional<Campsite> readCampsite(UUID id) {
-		return campsiteManagementAdapter.readCampsite(id);
+	public Optional<Campsite> findCampsiteById(UUID id) {
+		return campsiteManagementAdapter.findCampsiteById(id);
 	}
 
 	@Override
 	public Campsite persistCampsite(Campsite campsite) {
 		return campsiteManagementAdapter.persistCampsite(campsite);
+	}
+
+	@Override
+	public List<Campsite> findAllCampsites() {
+		return campsiteManagementAdapter.findAllCampsites();
 	}
 }

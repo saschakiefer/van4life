@@ -32,13 +32,13 @@ public class CampsiteController {
 
 	@GetMapping("/{id}")
 	public ResponseEntity<CampsiteResponseDTO> findById(@PathVariable String id) {
-		Optional<Campsite> campsite = campsiteService.readCampsite(UUID.fromString(id));
+		Optional<Campsite> campsite = campsiteService.findCampsiteById(UUID.fromString(id));
 
 		if (campsite.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
 
-		return new ResponseEntity<CampsiteResponseDTO>(
+		return new ResponseEntity<>(
 				CampsiteMapper.CampsiteToCampsiteResponseDto(campsite.get()),
 				HttpStatus.OK
 		);

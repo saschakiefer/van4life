@@ -61,7 +61,7 @@ class CampsiteManagementSqlAdapterTest {
 		visitRepository.saveAll(campsiteDb.getVisits());
 		log.info("Test campsite with if '{}' generated", campsiteDb.getId());
 
-		Optional<Campsite> campsite = campsiteManagement.readCampsite(campsiteDb.getId());
+		Optional<Campsite> campsite = campsiteManagement.findCampsiteById(campsiteDb.getId());
 		assertThat(campsite.isPresent(), is(true));
 
 		assertThat(campsite.get().getVisits().size(), is(2));

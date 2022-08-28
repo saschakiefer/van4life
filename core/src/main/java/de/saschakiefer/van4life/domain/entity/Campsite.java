@@ -55,7 +55,7 @@ public class Campsite extends BaseEntity {
 	private String comment;
 
 	@Builder.Default
-	@OneToMany(mappedBy = "campsite", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "campsite", fetch = FetchType.LAZY)
 	private Set<Visit> visits = new TreeSet<>();
 
 	@Builder.Default

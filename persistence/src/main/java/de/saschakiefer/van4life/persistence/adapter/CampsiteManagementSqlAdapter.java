@@ -1,6 +1,7 @@
 package de.saschakiefer.van4life.persistence.adapter;
 
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -25,7 +26,7 @@ public class CampsiteManagementSqlAdapter implements CampsiteManagementAdapter {
 	VisitRepository visitRepository;
 
 	@Override
-	public Optional<Campsite> readCampsite(UUID id) {
+	public Optional<Campsite> findCampsiteById(UUID id) {
 		return campsiteRepository.findById(id);
 	}
 
@@ -35,5 +36,10 @@ public class CampsiteManagementSqlAdapter implements CampsiteManagementAdapter {
 		visitRepository.saveAll(campsite.getVisits());
 
 		return dbCampsite;
+	}
+
+	@Override
+	public List<Campsite> findAllCampsites() {
+		return campsiteRepository.findAll();
 	}
 }
