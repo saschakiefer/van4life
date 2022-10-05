@@ -1,5 +1,6 @@
 import json
 import os
+import re
 import sys
 
 import requests
@@ -66,7 +67,13 @@ def send_request_and_get_guid(body):
 
 
 def process_files():
+    regex = r"\d\d\d\d-\d\d-\d\d\s-\sCampspot.txt"
     for filename in os.listdir(source_dir):
+        matches = re.findall(regex, filename)
+        if len(matches) != 1:
+            print("Skipping ", filename)
+            continue
+
         print("Processing ", filename)
         with open(os.path.join(source_dir, filename), 'r') as f:
             text = f.read()
