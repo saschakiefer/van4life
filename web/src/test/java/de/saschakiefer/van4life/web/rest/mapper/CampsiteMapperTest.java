@@ -43,5 +43,4 @@ class CampsiteMapperTest {
 		assertThat(campsiteResponseDTO.getType(), is(CampsiteType.CS));
 		assertThat(campsiteResponseDTO.getRating(), is(3));
 	}
-
 }

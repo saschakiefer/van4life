@@ -6,7 +6,7 @@ import sys
 import requests
 
 """
-Importer for filese generated from Drafts with the following structure:
+Importer for files generated from Drafts with the following structure:
 
 2022-08-23 - Campspot.txt
 {

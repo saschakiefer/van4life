@@ -37,10 +37,8 @@
             <column name="longitude" type="double">
                 <constraints nullable="true"/>
             </column>
-            <column name="creation_datetime"
-                    type="timestamp"/>
-            <column name="update_datetime"
-                    type="timestamp"/>
+            <column name="creation_datetime" type="timestamp"/>
+            <column name="update_datetime" type="timestamp"/>
         </createTable>
     </changeSet>
 
@@ -90,6 +88,22 @@
                 <constraints nullable="true"/>
             </column>
         </addColumn>
+    </changeSet>
+
+    <changeSet id="06 create track" author="saschakiefer">
+        <createTable tableName="track">
+            <column name="id" type="uuid">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+            <column name="timestamp" type="timestamp"/>
+            <column name="geojson" type="varchar"/>
+            <column name="gpx" type="varchar"/>
+            <column name="creation_datetime" type="timestamp"/>
+            <column name="update_datetime" type="timestamp"/>
+        </createTable>
     </changeSet>
 
 </databaseChangeLog>

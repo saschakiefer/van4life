@@ -3,7 +3,6 @@ package de.saschakiefer.van4life.web.rest.dto;
 import java.time.LocalDate;
 import java.util.Set;
 import java.util.TreeSet;
-import java.util.UUID;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -20,7 +19,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CampsiteCreationRequestDTO {
-	private UUID id;
 	@NotNull(message = "Campsite name is required")
 	private String name;
 	private Address address = new Address();
